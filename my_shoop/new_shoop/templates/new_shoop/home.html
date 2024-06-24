@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Online Shop</title>
+        </head>
+        <body>
+
+
+
+
+        <h1>Online Shop</h1>
+    <div style="display: flex;">
+    {% for clothes in clothes %}
+        <div class="card" style="width: 18rem;">
+          <img src="{{ clothes.picture }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ clothes.name }}</h5>
+            <p class="card-text">{{ clothes.price }}.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+    </div>
+
+    {% endfor %}
+    </div>
+{% endblock %}
+
+</body>
+</html>
+
