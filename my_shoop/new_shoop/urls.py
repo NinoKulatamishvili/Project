@@ -9,4 +9,3 @@ urlpatterns = [
     path('men/', views.about, name='men'),
     path('kids/', views.about, name='kids')
 ]
-
