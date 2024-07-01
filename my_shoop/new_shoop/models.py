@@ -1,18 +1,22 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-    colour = models.CharField(max_length=50)
+class Categories(models.Model):
+    category = models.CharField(max_length=50) #სქესი
+    category_name = models.CharField(max_length=150) #რა პროდუქტია
     def __str__(self):
-        return self.name
+        return self.category
 
-class Clothes(models.Model):
-    picture=models.CharField(max_length=300)
-    name=models.ForeignKey(Category, on_delete=models.SET('Unknown Category'))
-    size=models.CharField(max_length=50)
-    colour=models.CharField(max_length=50)
+class Products(models.Model):
+    picture=models.CharField(max_length=1000)
+    category_name = models.CharField(max_length=150) #რა პროდუქტია
+    category=models.ForeignKey(Categories, on_delete=models.SET('Unknown Categories')) #სქესი
     price=models.CharField(max_length=10)     #როცა რიცხვებზეა საუბარი რას ვირჩევ
+    stock_quantity = models.CharField(max_length=10)
 
     def __str__(self):
-        return f"{self.name}_{self.price}"
+        return f"{self.category_name}_{self.price}"
+
+class User(AbstractUser):
+    products=models.ManyToManyField(Products, related_name='users', blank=True)
