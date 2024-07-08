@@ -8,10 +8,16 @@ class Categories(models.Model):
     def __str__(self):
         return self.category
 
+class Gender(models.Model):
+     category = models.CharField(max_length=150)
+     def __str__(self):
+         return self.category
+
 class Products(models.Model):
     picture=models.CharField(max_length=1000)
     category_name = models.CharField(max_length=150) #რა პროდუქტია
     category=models.ForeignKey(Categories, on_delete=models.SET('Unknown Categories')) #სქესი
+    gender=models.ManyToManyField(Gender, related_name='products', blank=True)
     price=models.CharField(max_length=10)     #როცა რიცხვებზეა საუბარი რას ვირჩევ
     stock_quantity = models.CharField(max_length=10)
 
